@@ -135,7 +135,7 @@
             <text>分享海报图</text>
         </button>
         <button open-type="share" class="zan-btn zan-actionsheet__btn">
-            <image class="down-icon" mode="aspectFit" src="../../images/wechat.svg"></image>
+            <image class="down-icon" mode="aspectFit" src="../../images/share.svg"></image>
             <text>分享给朋友</text>
         </button>
     </view>

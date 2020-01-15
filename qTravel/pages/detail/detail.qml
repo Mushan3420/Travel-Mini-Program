@@ -33,9 +33,9 @@
     <ad unit-id="{{advert.code}}"></ad>
   </view>
   <view class="topic-title-wrapper" id="comment">
-    <view class="topic-title">话题讨论</view>
+    <view class="topic-title">话题围观</view>
     <view class="onlooker-amount relative">
-      <text>邀请好友参与讨论 </text>
+      <text>邀请好友一起围观 </text>
       <text class="onlooker-arrow">>></text>
       <button open-type='share' class="userLogin"></button>
     </view>
@@ -44,7 +44,7 @@
     <view class="listnodata" qq:if="{{comments.length==0}}">
       <image class="nodataimg" lazyLoad="false" mode="aspectFit|aspectFill|widthFix" src="../../images/message.png"></image>
       <view class="nodatatext">
-        <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;</text>还没有评论，快来抢沙发吧！</view>
+        <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;</text>不允许评论，可以收藏点赞分享噢！</view>
     </view>
     <view class="comment-reply">
       <view class="comment-reply-item" bindtap="replyComment" id="{{detail.id}}" data-parent="{{item.id?item.id:0}}" data-reply="{{item.author.name}}" data-formId="{{item.formId}}" qq:for="{{comments}}" qq:for-item="item" qq:key="{{id}}">
@@ -107,8 +107,6 @@
         <image bindtap="bindBack" class="bottom-btn bottom-back" src="../../images/back.png"></image>
         <view class="bottom-btn bottom-text relative" style="width:260rpx">
           <text>{{placeholder}}</text>
-          <button qq:if="{{!user}}" class="userLogin" bindgetuserinfo="getProfile" openType="getUserInfo"></button>
-          <button qq:else class="userLogin" bindtap="tapcomment"></button>
         </view>
         <view class="bottom-btn bottom-comment-container relative">
           <image class="bottom-comment" src="{{detail.isfav?'../../images/collected.png':'../../images/collect.png'}}"></image>
@@ -135,7 +133,7 @@
             <text>分享海报图</text>
         </button>
         <button open-type="share" class="zan-btn zan-actionsheet__btn">
-            <image class="down-icon" mode="aspectFit" src="../../images/wechat.svg"></image>
+            <image class="down-icon" mode="aspectFit" src="../../images/share.svg"></image>
             <text>分享给朋友</text>
         </button>
     </view>

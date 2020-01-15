@@ -4,12 +4,12 @@
  * GiTee 地址： https://gitee.com/izol/Travel-Mini-Program
  */
 
-const API_HOST = 'https://demo.imahui.com'  // 更换为你的网站域名, 需要有 https 协议
+const API_HOST = 'https://www.euyyue.com'  // 更换为你的网站域名, 需要有 https 协议
 const Auth = require('./auth')
 
 const templates = {
-	comments:['fNlp81kLJvCKLNBdendgPG7Pe1lCJFKmIMHt2r76YZ0','zYvY02QIIrAD1snUHBHZzKdlWzN54lRX05KYvSSTvUk'], // 评论回复与审核模板ID
-	subscribe:['5UTa3Mi43Tht3xGX2PzIyurKKGbFSREdsWrb3jwU-GY'] // 资讯更新提醒模板ID
+  comments: ['amH5DUCLzhI8dfzrlVa_XJmlGp30BuoA0TqmiOItY8o','upPC7tV742sTwQNp1dOFxs2hfUFrfi5XBAvAJuySytg'], // 评论回复与审核模板ID
+  subscribe: ['XHrtJgTnDvPiMJ4h03HNk9HS4INuoe8o6mcVLfpN0RA'] // 资讯更新提醒模板ID
 }
  
 const API = {}

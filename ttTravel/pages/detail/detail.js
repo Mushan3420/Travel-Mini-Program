@@ -491,11 +491,11 @@ Page({
     context.setFillStyle("#333333");
     context.setFontSize(32);
     context.setTextAlign('left');
-    context.fillText("丸子小程序", 240, 780);
+    context.fillText("悠悦俄语网", 240, 780);
     context.setFillStyle("#666666");
     context.setFontSize(28);
     context.setTextAlign('left');
-    context.fillText("又一个 WordPress 小程序", 240, 830);
+    context.fillText("悠悦教育官方网站", 240, 830);
     context.setFillStyle("#696969");
     context.setFontSize(24);
     context.setTextAlign('left');
