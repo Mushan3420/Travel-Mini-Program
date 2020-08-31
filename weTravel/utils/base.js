@@ -11,7 +11,7 @@ const templates = {
   comments: ['amH5DUCLzhI8dfzrlVa_XJmlGp30BuoA0TqmiOItY8o','upPC7tV742sTwQNp1dOFxs2hfUFrfi5XBAvAJuySytg'], // 评论回复与审核模板ID
   subscribe: ['XHrtJgTnDvPiMJ4h03HNk9HS4INuoe8o6mcVLfpN0RA'] // 资讯更新提醒模板ID
 }
- 
+
 const API = {}
 
 API.getHost = function(){
@@ -23,11 +23,11 @@ API.template = function() {
 }
 
 API.request = function(url, method = "GET", data={}, args = { token: true }) {
-	
+
 	return new Promise(function(resolve, reject) {
-		
+
 		url = API_HOST + url;
-		
+
 		if (args.token) {
 			const token = API.token();
 			if(token) {
@@ -58,10 +58,10 @@ API.request = function(url, method = "GET", data={}, args = { token: true }) {
 					});
 				} else {
 					wx.showToast({
-						title: "请求数据失败",
+						title: "请求数据出错",
+						icon: 'loading',
 						duration: 1500
 					});
-					console.log(res.data.message);
 					reject(res.data);
 				}
 			},
@@ -71,7 +71,7 @@ API.request = function(url, method = "GET", data={}, args = { token: true }) {
 			}
 		})
 	});
-	
+
 }
 
 API.get = function(url, data={}, args = { token: false }) {
@@ -88,7 +88,7 @@ API.getUser = function(){
 	}else{
 		return false;
 	}
-	
+
 }
 
 API.login = function() {
@@ -121,7 +121,7 @@ API.logout = function() {
 	} else {
 		wx.showToast({
 			title: '注销失败!',
-			icon: 'warn',
+			icon: 'loading',
 			duration: 1000,
 		})
 	}

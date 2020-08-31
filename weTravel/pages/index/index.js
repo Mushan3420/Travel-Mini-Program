@@ -19,6 +19,7 @@ Page({
     placeHolder: '输入你想知道的内容...',
     autoFocus: false,
     inputEnable: true,
+    isLastPage: false
   },
 
   onLoad: function () {
@@ -77,7 +78,8 @@ Page({
   onPullDownRefresh: function() {
     this.setData({
       page:1,
-      posts:[]
+      posts:[],
+      isLastPage: false
     })
     this.getPostList()
   },
@@ -100,6 +102,26 @@ Page({
     return {
       title: this.data.siteInfo.name ,
       path: '/pages/index/index'
+    }
+  },
+
+  /**
+	 * 用户点击右上角分享至朋友圈
+	 */
+	onShareTimeline: function () {
+    return {
+      title: this.data.siteInfo.name + ":" + this.data.siteInfo.description,
+      imageUrl: this.data.siteInfo.cover
+    }
+  },
+  
+  /**
+   * 用户点击右上角添加到收藏
+   */
+  onAddToFavorites: function () {
+    return {
+      title: this.data.siteInfo.name + ":" + this.data.siteInfo.description,
+      imageUrl: this.data.siteInfo.cover
     }
   },
 
