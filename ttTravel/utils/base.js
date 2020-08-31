@@ -6,7 +6,7 @@
 
 const API_HOST = 'https://www.euyyue.com'  // 更换为你的网站域名, 需要有 https 协议
 const Auth = require('./auth')
- 
+
 const API = {}
 
 API.getHost = function(){
@@ -14,11 +14,11 @@ API.getHost = function(){
 }
 
 API.request = function(url, method = "GET", data={}, args = { token: true }) {
-	
+
 	return new Promise(function(resolve, reject) {
-		
+
 		url = API_HOST + url;
-		
+
 		if (args.token) {
 			const token = API.token();
 			if(token) {
@@ -49,7 +49,8 @@ API.request = function(url, method = "GET", data={}, args = { token: true }) {
 					});
 				} else {
 					tt.showToast({
-						title: "请求数据失败",
+						title: "请求数据出错",
+						icon: 'loading',
 						duration: 1500
 					});
 					console.log(res.data.message);
@@ -62,7 +63,7 @@ API.request = function(url, method = "GET", data={}, args = { token: true }) {
 			}
 		})
 	});
-	
+
 }
 
 API.get = function(url, data={}, args = { token: false }) {
@@ -79,7 +80,7 @@ API.getUser = function(){
 	}else{
 		return false;
 	}
-	
+
 }
 
 API.login = function() {
@@ -102,7 +103,7 @@ API.logout = function() {
 	} else {
 		tt.showToast({
 			title: '注销失败!',
-			icon: 'warn',
+			icon: 'loading',
 			duration: 1000,
 		})
 	}

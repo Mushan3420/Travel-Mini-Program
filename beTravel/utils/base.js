@@ -6,7 +6,7 @@
 
 const API_HOST = 'https://www.euyyue.com'  // 更换为你的网站域名, 需要有 https 协议
 const Auth = require('./auth')
- 
+
 const API = {}
 
 API.getHost = function(){
@@ -14,11 +14,11 @@ API.getHost = function(){
 }
 
 API.request = function(url, method = "GET", data={}, args = { token: true }) {
-	
+
 	return new Promise(function(resolve, reject) {
-		
+
 		url = API_HOST + url;
-		
+
 		if (args.token) {
 			const token = API.token();
 			if(token) {
@@ -49,7 +49,8 @@ API.request = function(url, method = "GET", data={}, args = { token: true }) {
 					});
 				} else {
 					swan.showToast({
-						title: "请求数据失败",
+						title: "请求数据出错",
+						icon: "loading",
 						duration: 1500
 					});
 					console.log(res.data.message);
@@ -62,7 +63,7 @@ API.request = function(url, method = "GET", data={}, args = { token: true }) {
 			}
 		})
 	});
-	
+
 }
 
 API.get = function(url, data={}, args = { token: false }) {
@@ -79,15 +80,22 @@ API.getUser = function(){
 	}else{
 		return false;
 	}
-	
+
 }
 
 API.login = function() {
 	return new Promise(function(resolve, reject) {
 		if(Auth.check()){
 			resolve(Auth.user());
-		}else{
-			resolve(Auth.login());
+		} else {
+			swan.login({
+				success: function(res) {
+					resolve(res);
+				},
+				fail: function(err) {
+					reject(err);
+				}
+			})
 		}
 	});
 }
@@ -102,27 +110,10 @@ API.logout = function() {
 	} else {
 		swan.showToast({
 			title: '注销失败!',
-			icon: 'warn',
+			icon: "loading",
 			duration: 1000,
 		})
 	}
-}
-
-API.getUserInfo = function() {
-	return new Promise(function(resolve, reject) {
-		Auth.getUserInfo().then(data=>{
-			API.post('/wp-json/mp/v1/baidu/login', data, { token: false }).then(res => {
-				API.storageUser(res);
-				console.log(res);
-				resolve(res.user);
-			}, err => {
-				reject(err);
-			});
-		})
-		.catch( err =>{
-			reject(err);
-		})
-	});
 }
 
 API.token = function() {
@@ -156,13 +147,11 @@ API.guard = function(fn) {
 		if(API.getUser()) {
 			return fn.apply(self, arguments)
 		} else {
-			return API.getUserInfo().then(res => {
-				console.log('登录成功', res);
-				return fn.apply(self, arguments)
-			}, err => {
-				console.log('登录失败', err);
-				return err
+			swan.showModal({
+				title: '提示',
+				content: '请先授权登录小程序'
 			})
+			return
 		}
 	}
 }
